@@ -19,8 +19,12 @@ public class GameScreen implements Screen {
 
     private Player player;
 
+    private AssetManager assetManager;
+
     public GameScreen(AssetManager assetManager)
     {
+        this.assetManager = assetManager;
+
         mapManager = new MapManager(assetManager);
         gameCamera = new GameCamera();
 
@@ -69,6 +73,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        assetManager.dispose();
     }
 }
