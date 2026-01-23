@@ -27,7 +27,7 @@ This project intentionally keeps things minimal while providing a solid foundati
 ## 🚀 How to use
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/ProGencel/libGDX-Base-Project
 ```
 
 Then open the project with **IntelliJ IDEA** and run the **DesktopLauncher**.
