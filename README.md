@@ -1,34 +1,58 @@
-# Base Project
+# 🎮 LibGDX Base Project for Rapid Prototyping
 
+This repository provides a clean and ready-to-use **LibGDX base project** designed for developers who want to quickly experiment with new gameplay mechanics, systems, or ideas **without starting from scratch**.
 
-This is a project you can use if you want to try something new in libgdx but don't want to bother with creating character or maps.
+You can clone this project and immediately begin testing new features in a structured LibGDX environment.
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+It is also suitable for beginners who want to understand how a simple LibGDX project is organized in practice.
 
-## Platforms
+---
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+## ✅ What is already set up?
 
-## Gradle
+This project intentionally keeps things minimal while providing a solid foundation:
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+* Tiled map integration
+* Basic character rendering
+* Camera setup
+* Screen structure
+* Project architecture ready for extension
+* Clean and understandable code structure
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+> No animations, no Box2D, no complex systems — this is intentional.
+> This project is meant to be a **sandbox** for your own experiments.
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+---
+
+## 🚀 How to use
+
+```bash
+git clone <repo-url>
+```
+
+Then open the project with **IntelliJ IDEA** and run the **DesktopLauncher**.
+
+You are now ready to start experimenting.
+
+---
+
+## 🧪 How to experiment with new features
+
+Create your new systems, mechanics, or experiments inside the project and plug them into the existing structure.
+You don't need to deal with project setup, window creation, or map integration.
+
+Focus only on what you want to test.
+
+---
+
+## 🎯 Who is this for?
+
+* LibGDX developers who want a reusable starting point
+* Developers who frequently prototype new ideas
+* Beginners who want to see a simple, real project structure
+
+---
+
+## 📌 Goal of this project
+
+To provide a lightweight, extendable LibGDX template that saves time and encourages experimentation.
