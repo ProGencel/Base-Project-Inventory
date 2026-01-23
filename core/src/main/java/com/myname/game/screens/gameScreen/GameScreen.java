@@ -34,7 +34,7 @@ public class GameScreen implements Screen {
         factory = new EntityFactory(mapManager.tiledMap);
         player = new Player(assetManager,factory);
 
-        gameScreenDrawer = new DrawGameScreen(mapManager,player);
+        gameScreenDrawer = new DrawGameScreen(mapManager,player,gameCamera);
         renderGameScreen = new RenderGameScreen(mapManager,gameCamera);
     }
 
@@ -53,6 +53,12 @@ public class GameScreen implements Screen {
         renderGameScreen.renderGameScreen(delta);
 
         this.draw();
+        this.update();
+    }
+
+    public void update()
+    {
+        gameCamera.cameraUpdate(player);
     }
 
     @Override
@@ -78,5 +84,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         assetManager.dispose();
+        mapManager.dispose();
     }
 }

@@ -5,6 +5,7 @@ import static com.myname.game.utils.Constants.*;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.myname.game.entitiy.player.Player;
 
 
 public class GameCamera {
@@ -15,17 +16,21 @@ public class GameCamera {
 
     public GameCamera()
     {
-        orthographicCamera = new OrthographicCamera(20,20*((float) SCREEN_HEIGHT /SCREEN_WIDTH));
-        orthographicCamera.position.set     //Kamerayi ortalamak icin
-            (orthographicCamera.viewportWidth/2f,orthographicCamera.viewportHeight/2f,0);
+        orthographicCamera = new OrthographicCamera();
 
-        orthographicCamera.update();
-
-        viewport = new FitViewport(SCREEN_WIDTH,SCREEN_HEIGHT);
+        viewport = new FitViewport(SCREEN_WIDTH * PPM,SCREEN_HEIGHT * PPM,orthographicCamera);
     }
 
     public void viewportUpdate(int width,int height)
     {
         viewport.update(width, height);
+    }
+
+    public void cameraUpdate(Player player)
+    {
+        orthographicCamera.position.x = player.position.x;
+        orthographicCamera.position.y = player.position.y;
+
+        orthographicCamera.update();
     }
 }
