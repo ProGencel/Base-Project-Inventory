@@ -52,13 +52,10 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         renderGameScreen.renderGameScreen(delta);
 
-        this.draw();
-        this.update();
-    }
-
-    public void update()
-    {
         gameCamera.cameraUpdate(player);
+        player.render(delta);
+
+        this.draw();
     }
 
     @Override

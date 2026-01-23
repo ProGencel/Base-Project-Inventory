@@ -11,15 +11,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.myname.game.entitiy.EntityFactory;
 import com.myname.game.entitiy.GameEntity;
 import com.myname.game.interfaces.Drawable;
+import com.myname.game.interfaces.Renderable;
 
-public class Player extends GameEntity implements Drawable {
+public class Player extends GameEntity implements Drawable, Renderable {
 
     private Texture texture;
     private TextureRegion textureRegion;
 
     private PlayerFactory playerFactory;
+    private PlayerInputHandler inputHandler;
 
     private PointMapObject playerProps;
+
     public Vector2 position;
     private float width;
     private float height;
@@ -31,6 +34,7 @@ public class Player extends GameEntity implements Drawable {
         textureRegion = new TextureRegion(texture);
 
         playerFactory = new PlayerFactory(factory);
+        inputHandler = new PlayerInputHandler(this);
         playerProps = playerFactory.getPlayer();
 
         position = playerProps.getPoint();
@@ -51,5 +55,10 @@ public class Player extends GameEntity implements Drawable {
 
         batch.draw(textureRegion,position.x,position.y,width,height);
 
+    }
+
+    @Override
+    public void render(float dt) {
+        inputHandler.render(dt);
     }
 }
