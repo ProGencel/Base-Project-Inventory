@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Disposable;
 import com.myname.game.entitiy.player.Player;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.myname.game.entitiy.staticEntity.StaticEntityCreator;
 import com.myname.game.tools.GameCamera;
 import com.myname.game.tools.MapManager;
 
@@ -13,15 +14,18 @@ public class DrawGameScreen implements Disposable {
     private MapManager mapManager;
     private GameCamera camera;
     private Player player;
+    private StaticEntityCreator staticEntityCreator;
 
     private SpriteBatch batch;
 
-    public DrawGameScreen(MapManager mapManager, Player player, GameCamera camera)
+    public DrawGameScreen(MapManager mapManager, Player player, GameCamera camera,
+                          StaticEntityCreator staticEntityCreator)
     {
         batch = new SpriteBatch();
 
         this.mapManager = mapManager;
         this.player = player;
+        this.staticEntityCreator = staticEntityCreator;
         this.camera = camera;
     }
 
@@ -34,6 +38,7 @@ public class DrawGameScreen implements Disposable {
 
         mapManager.draw(batch);
         player.draw(batch);
+        staticEntityCreator.draw(batch);
 
         batch.end();
     }

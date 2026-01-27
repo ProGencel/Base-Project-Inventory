@@ -14,7 +14,7 @@ public class PlayerFactory {
 
     private void setPlayer(EntityFactory factory)
     {
-        pointMapObject = (PointMapObject) factory.findEntity("Player","EntityReferences");
+        pointMapObject = (PointMapObject) factory.findPointEntity("Player","EntityReferences");
 
         if(pointMapObject == null){System.out.println("Player could not be configured");}
     }

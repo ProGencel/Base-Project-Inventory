@@ -31,12 +31,8 @@ public class Player extends GameEntity implements Drawable, UpdateAble {
         return position;
     }
 
-    public void setPosition(Vector2 position) {
-        this.position = position;
-    }
-
     public Player(AssetManager manager, EntityFactory factory) {
-        super(manager);
+        super();
 
         texture = manager.get("Player/PlayerIdle.png");
         textureRegion = new TextureRegion(texture);
@@ -56,6 +52,7 @@ public class Player extends GameEntity implements Drawable, UpdateAble {
 
         position.y *= PPM;
         position.y -= height/2;
+
     }
 
     @Override

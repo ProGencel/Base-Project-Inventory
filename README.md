@@ -14,7 +14,7 @@ This project intentionally keeps things minimal while providing a solid foundati
 
 * Tiled map integration
 * Basic character rendering
-* Camera setup
+* Camera setup tamam seni kimse incitmeyecek
 * Screen structure
 * Project architecture ready for extension
 * Clean and understandable code structure
