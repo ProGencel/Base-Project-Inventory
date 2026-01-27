@@ -1,7 +1,9 @@
 package com.myname.game.screens.gameScreen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.myname.game.entitiy.player.Player;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,11 +19,13 @@ public class DrawGameScreen implements Disposable {
     private StaticEntityCreator staticEntityCreator;
 
     private SpriteBatch batch;
+    private ShapeRenderer shapeRenderer;
 
     public DrawGameScreen(MapManager mapManager, Player player, GameCamera camera,
                           StaticEntityCreator staticEntityCreator)
     {
         batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
 
         this.mapManager = mapManager;
         this.player = player;
@@ -41,6 +45,15 @@ public class DrawGameScreen implements Disposable {
         staticEntityCreator.draw(batch);
 
         batch.end();
+
+
+        shapeRenderer.setProjectionMatrix(camera.orthographicCamera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.RED);
+
+        shapeRenderer.rect(player.getRectangle().x,player.getRectangle().y,player.getRectangle().width,player.getRectangle().height);
+
+        shapeRenderer.end();
     }
 
     @Override

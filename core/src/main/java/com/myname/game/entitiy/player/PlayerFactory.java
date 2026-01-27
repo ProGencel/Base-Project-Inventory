@@ -19,6 +19,7 @@ public class PlayerFactory {
         if(pointMapObject == null){System.out.println("Player could not be configured");}
     }
 
+
     public PointMapObject getPlayer()
     {
         return pointMapObject;
