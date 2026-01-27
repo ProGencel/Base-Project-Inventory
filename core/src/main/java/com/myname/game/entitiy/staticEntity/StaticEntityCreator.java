@@ -2,7 +2,6 @@ package com.myname.game.entitiy.staticEntity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.utils.Array;
 import com.myname.game.entitiy.EntityFactory;
 import com.myname.game.entitiy.GameEntity;
@@ -13,6 +12,11 @@ public class StaticEntityCreator implements Drawable {
     private EntityFactory factory;
     private Array<MapObject> staticEntityObjects;
     private Array<GameEntity> staticEntities;
+
+    public Array<GameEntity> getStaticEntityObjects()
+    {
+        return staticEntities;
+    }
 
     public StaticEntityCreator(EntityFactory factory)
     {
