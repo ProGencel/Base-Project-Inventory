@@ -7,7 +7,6 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.myname.game.entitiy.GameEntity;
 import com.myname.game.interfaces.Drawable;
 import com.myname.game.utils.Constants;
@@ -18,11 +17,6 @@ public class StaticEntity extends GameEntity implements Drawable {
     private final Vector2 position;
     private float width;
     private float height;
-
-    public Rectangle getRectangle()
-    {
-        return rectangle;
-    }
 
     public Vector2 getPosition()
     {
@@ -56,8 +50,18 @@ public class StaticEntity extends GameEntity implements Drawable {
     {
         for(MapObject object : mapObject.getTile().getObjects())
         {
-            RectangleMapObject recObject = (RectangleMapObject) object;
-            rectangle = recObject.getRectangle();
+            if(object instanceof RectangleMapObject)
+            {
+                RectangleMapObject recObject = (RectangleMapObject) object;
+
+                //Orijinal rectangle i bozmuyoruz kopyasini olusturuyoruz
+                Rectangle localRect = recObject.getRectangle();
+
+                this.rectangle = new Rectangle((localRect.x * Constants.PPM) + position.x,
+                    (localRect.y * Constants.PPM) + position.y,
+                    localRect.width * Constants.PPM,
+                    localRect.height * Constants.PPM);
+            }
         }
     }
 }

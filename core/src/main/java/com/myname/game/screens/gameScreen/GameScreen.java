@@ -47,7 +47,7 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        player.update(delta);
+        player.playerUpdate(delta,staticEntityCreator.getStaticEntities());
 
         updateGameScreen.updateGameScreen(delta);
 

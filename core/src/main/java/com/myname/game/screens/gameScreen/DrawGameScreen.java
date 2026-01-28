@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.myname.game.entitiy.GameEntity;
@@ -58,16 +56,12 @@ public class DrawGameScreen implements Disposable {
 
         shapeRenderer.rect(player.getRectangle().x,player.getRectangle().y,player.getRectangle().width,player.getRectangle().height);
 
-        for(GameEntity entity : staticEntityCreator.getStaticEntityObjects())
+        for(GameEntity entity : staticEntityCreator.getStaticEntities())
         {
+            Rectangle rectangle = entity.getRectangle();
 
-            StaticEntity staticEntity = (StaticEntity) entity;
-
-            Rectangle rectangle = new Rectangle(entity.rectangle.x,entity.rectangle.y,entity.rectangle.width,entity.rectangle.height);
-
-            shapeRenderer.rect(rectangle.x * Constants.PPM + staticEntity.getPosition().x,
-                rectangle.y * Constants.PPM + staticEntity.getPosition().y,
-                rectangle.width * Constants.PPM, rectangle.height * Constants.PPM);
+            shapeRenderer.rect(rectangle.x, rectangle.y,
+                rectangle.width, rectangle.height);
 
         }
 

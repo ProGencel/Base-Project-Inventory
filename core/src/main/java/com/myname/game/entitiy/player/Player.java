@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.objects.PointMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.myname.game.entitiy.EntityFactory;
 import com.myname.game.entitiy.GameEntity;
+import com.myname.game.entitiy.collision.CollisionManager;
 import com.myname.game.interfaces.Colladable;
 import com.myname.game.interfaces.Drawable;
 import com.myname.game.interfaces.UpdateAble;
@@ -73,10 +75,36 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
 
     }
 
+    public void playerUpdate(float dt, Array<GameEntity> obstacles)
+    {
+        update(dt);
+
+        float nextX = position.x + velocity.x * dt;
+
+        Rectangle testRecX = new Rectangle(nextX + PLAYER_HITBOX_OFFSET_X, position.y + PLAYER_HITBOX_OFFSET_Y,
+            rectangle.width, rectangle.height);
+
+        if(!CollisionManager.isWillCollision(testRecX,obstacles))
+        {
+            position.x = nextX;
+        }
+
+
+        float nextY = position.y + velocity.y * dt;
+
+        Rectangle testRecY = new Rectangle(position.x + PLAYER_HITBOX_OFFSET_X,nextY + PLAYER_HITBOX_OFFSET_Y,
+            rectangle.width, rectangle.height);
+
+        if(!CollisionManager.isWillCollision(testRecY,obstacles))
+        {
+            position.y = nextY;
+        }
+        rectangle.x = position.x + PLAYER_HITBOX_OFFSET_X ;
+        rectangle.y = position.y + PLAYER_HITBOX_OFFSET_Y;
+    }
+
     @Override
     public void update(float dt) {
         inputHandler.update(dt);
-        rectangle.x = position.x + PLAYER_HITBOX_OFFSET_X ;
-        rectangle.y = position.y + PLAYER_HITBOX_OFFSET_Y;
     }
 }

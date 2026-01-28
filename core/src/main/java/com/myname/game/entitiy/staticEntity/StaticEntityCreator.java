@@ -13,7 +13,7 @@ public class StaticEntityCreator implements Drawable {
     private Array<MapObject> staticEntityObjects;
     private Array<GameEntity> staticEntities;
 
-    public Array<GameEntity> getStaticEntityObjects()
+    public Array<GameEntity> getStaticEntities()
     {
         return staticEntities;
     }
