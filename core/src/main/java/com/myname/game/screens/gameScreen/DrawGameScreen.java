@@ -63,12 +63,11 @@ public class DrawGameScreen implements Disposable {
 
             StaticEntity staticEntity = (StaticEntity) entity;
 
-            for(Rectangle rectangle : staticEntity.getRectangles())
-            {
-                        shapeRenderer.rect(rectangle.x*Constants.PPM + staticEntity.getPosition().x,
-                            rectangle.y*Constants.PPM + staticEntity.getPosition().y,
-                        rectangle.width * Constants.PPM, rectangle.height * Constants.PPM);
-            }
+            Rectangle rectangle = new Rectangle(entity.rectangle.x,entity.rectangle.y,entity.rectangle.width,entity.rectangle.height);
+
+            shapeRenderer.rect(rectangle.x * Constants.PPM + staticEntity.getPosition().x,
+                rectangle.y * Constants.PPM + staticEntity.getPosition().y,
+                rectangle.width * Constants.PPM, rectangle.height * Constants.PPM);
 
         }
 

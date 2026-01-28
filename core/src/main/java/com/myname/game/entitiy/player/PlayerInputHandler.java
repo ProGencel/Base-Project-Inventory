@@ -18,21 +18,29 @@ public class PlayerInputHandler implements UpdateAble {
 
     @Override
     public void update(float dt) {
+
+        player.velocity.set(0,0);
+
         if(Gdx.input.isKeyPressed(Input.Keys.W))
         {
-            player.getPosition().y += Constants.PLAYER_SPEED * dt;
+            player.velocity.y = Constants.PLAYER_SPEED * dt;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S))
         {
-            player.getPosition().y -= Constants.PLAYER_SPEED * dt;
+            player.velocity.y = -Constants.PLAYER_SPEED * dt;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A))
         {
-            player.getPosition().x -= Constants.PLAYER_SPEED * dt;
+            player.velocity.x = -Constants.PLAYER_SPEED * dt;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D))
         {
-            player.getPosition().x += Constants.PLAYER_SPEED * dt;
+            player.velocity.x = Constants.PLAYER_SPEED * dt;
+        }
+
+        if(!player.velocity.isZero())
+        {
+            player.velocity.nor().scl(Constants.PLAYER_SPEED);
         }
     }
 }

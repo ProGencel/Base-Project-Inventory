@@ -6,17 +6,16 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.objects.PointMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.myname.game.entitiy.EntityFactory;
 import com.myname.game.entitiy.GameEntity;
+import com.myname.game.interfaces.Colladable;
 import com.myname.game.interfaces.Drawable;
 import com.myname.game.interfaces.UpdateAble;
-import com.myname.game.utils.Constants;
 
-public class Player extends GameEntity implements Drawable, UpdateAble {
+public class Player extends GameEntity implements Drawable, UpdateAble, Colladable {
 
     private Texture texture;
     private TextureRegion textureRegion;

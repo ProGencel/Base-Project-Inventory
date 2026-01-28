@@ -1,6 +1,5 @@
 package com.myname.game.entitiy.staticEntity;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
@@ -19,11 +18,10 @@ public class StaticEntity extends GameEntity implements Drawable {
     private final Vector2 position;
     private float width;
     private float height;
-    private Array<Rectangle> rectangles;
 
-    public Array<Rectangle> getRectangles()
+    public Rectangle getRectangle()
     {
-        return rectangles;
+        return rectangle;
     }
 
     public Vector2 getPosition()
@@ -34,10 +32,10 @@ public class StaticEntity extends GameEntity implements Drawable {
     public StaticEntity(MapObject mapObject)
     {
         position = new Vector2();
-        rectangles = new Array<>();
+
 
         setProps((TiledMapTileMapObject) mapObject);
-        setRectangles((TiledMapTileMapObject) mapObject);
+        setRectangle((TiledMapTileMapObject) mapObject);
     }
 
     @Override
@@ -54,12 +52,12 @@ public class StaticEntity extends GameEntity implements Drawable {
         height = textureRegion.getRegionHeight() * Constants.PPM;
     }
 
-    private void setRectangles(TiledMapTileMapObject mapObject)
+    private void setRectangle(TiledMapTileMapObject mapObject)
     {
         for(MapObject object : mapObject.getTile().getObjects())
         {
             RectangleMapObject recObject = (RectangleMapObject) object;
-            rectangles.add(recObject.getRectangle());
+            rectangle = recObject.getRectangle();
         }
     }
 }
