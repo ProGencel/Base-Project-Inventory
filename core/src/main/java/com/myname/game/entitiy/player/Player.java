@@ -13,11 +13,14 @@ import com.badlogic.gdx.utils.Array;
 import com.myname.game.entitiy.EntityFactory;
 import com.myname.game.entitiy.GameEntity;
 import com.myname.game.entitiy.collision.CollisionManager;
+import com.myname.game.events.ItemEvent;
+import com.myname.game.events.ItemEventManager;
+import com.myname.game.events.ItemListener;
 import com.myname.game.interfaces.Colladable;
 import com.myname.game.interfaces.Drawable;
 import com.myname.game.interfaces.UpdateAble;
 
-public class Player extends GameEntity implements Drawable, UpdateAble, Colladable {
+public class Player extends GameEntity implements Drawable, UpdateAble, Colladable, ItemListener {
 
     private Texture texture;
     private TextureRegion textureRegion;
@@ -66,6 +69,12 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
         rectangle = new Rectangle(position.x, position.y,
             width - PLAYER_HITBOX_OFFSET_WIDTH, height - PLAYER_HITBOX_OFFSET_HEIGHT);
 
+        ItemEventManager.subscribe(this);
+    }
+
+    @Override
+    public void answerEvent(ItemEvent itemEvent) {
+        System.out.println("Haber geldi !" + itemEvent.itemName);
     }
 
     @Override
@@ -87,6 +96,10 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
         if(!CollisionManager.isWillCollision(testRecX,obstacles))
         {
             position.x = nextX;
+        }
+        else
+        {
+            ItemEventManager.newEvent(new ItemEvent("Elma"));
         }
 
 
