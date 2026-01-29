@@ -74,7 +74,7 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
 
     @Override
     public void answerEvent(ItemEvent itemEvent) {
-        System.out.println("Haber geldi !" + itemEvent.itemName);
+
     }
 
     @Override
@@ -96,10 +96,6 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
         if(!CollisionManager.isWillCollision(testRecX,obstacles))
         {
             position.x = nextX;
-        }
-        else
-        {
-            ItemEventManager.newEvent(new ItemEvent("Elma"));
         }
 
 

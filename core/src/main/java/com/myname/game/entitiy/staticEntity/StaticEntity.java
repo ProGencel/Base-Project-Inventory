@@ -1,5 +1,7 @@
 package com.myname.game.entitiy.staticEntity;
 
+import static com.myname.game.utils.Constants.*;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
@@ -17,19 +19,26 @@ public class StaticEntity extends GameEntity implements Drawable {
     private final Vector2 position;
     private float width;
     private float height;
+    private Rectangle sensor;
 
     public Vector2 getPosition()
     {
         return position;
     }
 
+    public Rectangle getSensor()
+    {
+        return sensor;
+    }
+
     public StaticEntity(MapObject mapObject)
     {
         position = new Vector2();
-
+        sensor = new Rectangle();
 
         setProps((TiledMapTileMapObject) mapObject);
         setRectangle((TiledMapTileMapObject) mapObject);
+        setSensor();
     }
 
     @Override
@@ -40,10 +49,18 @@ public class StaticEntity extends GameEntity implements Drawable {
     private void setProps(TiledMapTileMapObject mapObject)
     {
         textureRegion = mapObject.getTextureRegion();
-        position.x = mapObject.getX() * Constants.PPM;
-        position.y = mapObject.getY() * Constants.PPM;
-        width = textureRegion.getRegionWidth() * Constants.PPM;
-        height = textureRegion.getRegionHeight() * Constants.PPM;
+        position.x = mapObject.getX() * PPM;
+        position.y = mapObject.getY() * PPM;
+        width = textureRegion.getRegionWidth() * PPM;
+        height = textureRegion.getRegionHeight() * PPM;
+    }
+
+    private void setSensor()
+    {
+        sensor.x = rectangle.x - STATIC_ENTITY_SENSOR_OFFSET_X_Y;
+        sensor.y = rectangle.y - STATIC_ENTITY_SENSOR_OFFSET_X_Y;
+        sensor.width = rectangle.width + STATIC_ENTITY_SENSOR_OFFSET_WIDTH_AND_HEIGHT;
+        sensor.height = rectangle.height + STATIC_ENTITY_SENSOR_OFFSET_WIDTH_AND_HEIGHT;
     }
 
     private void setRectangle(TiledMapTileMapObject mapObject)
@@ -57,10 +74,10 @@ public class StaticEntity extends GameEntity implements Drawable {
                 //Orijinal rectangle i bozmuyoruz kopyasini olusturuyoruz
                 Rectangle localRect = recObject.getRectangle();
 
-                this.rectangle = new Rectangle((localRect.x * Constants.PPM) + position.x,
-                    (localRect.y * Constants.PPM) + position.y,
-                    localRect.width * Constants.PPM,
-                    localRect.height * Constants.PPM);
+                this.rectangle = new Rectangle((localRect.x * PPM) + position.x,
+                    (localRect.y * PPM) + position.y,
+                    localRect.width * PPM,
+                    localRect.height * PPM);
             }
         }
     }
