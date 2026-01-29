@@ -27,6 +27,7 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
 
     private PlayerFactory playerFactory;
     private PlayerInputHandler inputHandler;
+    private PlayerUpdate playerUpdate;
 
     private PointMapObject playerProps;
 
@@ -52,6 +53,7 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
 
         playerFactory = new PlayerFactory(factory);
         inputHandler = new PlayerInputHandler(this);
+        playerUpdate = new PlayerUpdate();
         playerProps = playerFactory.getPlayer();
 
         position = playerProps.getPoint();
@@ -74,7 +76,10 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
 
     @Override
     public void answerEvent(ItemEvent itemEvent) {
-
+        if(itemEvent.itemName.equals("pot"))
+        {
+            //System.out.println("Merhaba");
+        }
     }
 
     @Override
@@ -110,6 +115,8 @@ public class Player extends GameEntity implements Drawable, UpdateAble, Colladab
         }
         rectangle.x = position.x + PLAYER_HITBOX_OFFSET_X ;
         rectangle.y = position.y + PLAYER_HITBOX_OFFSET_Y;
+
+        playerUpdate.playerUpdate(this,obstacles);
     }
 
     @Override

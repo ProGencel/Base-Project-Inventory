@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 public class ItemEventManager {
 
     private static Array<ItemListener> itemListeners = new Array<>();
+    private static Array<InputListener> inputListeners = new Array<>();
 
     public static void newEvent(ItemEvent itemEvent)
     {
@@ -15,8 +16,20 @@ public class ItemEventManager {
         }
     }
 
+    public static void newInputEvent(InputEvent inputEvent)
+    {
+        for(InputListener inputListener : inputListeners)
+        {
+            inputListener.answerEventOnInput(inputEvent);
+        }
+    }
+
     public static void subscribe(ItemListener itemListener)
     {
         itemListeners.add(itemListener);
+    }
+    public static void subscribeInput(InputListener inputListener)
+    {
+        inputListeners.add(inputListener);
     }
 }

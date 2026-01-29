@@ -10,10 +10,11 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.myname.game.entitiy.GameEntity;
+import com.myname.game.events.*;
 import com.myname.game.interfaces.Drawable;
 import com.myname.game.utils.Constants;
 
-public class StaticEntity extends GameEntity implements Drawable {
+public class StaticEntity extends GameEntity implements Drawable, ItemListener {
 
     private TextureRegion textureRegion;
     private final Vector2 position;
@@ -35,10 +36,16 @@ public class StaticEntity extends GameEntity implements Drawable {
     {
         position = new Vector2();
         sensor = new Rectangle();
+        ItemEventManager.subscribe(this);
 
         setProps((TiledMapTileMapObject) mapObject);
         setRectangle((TiledMapTileMapObject) mapObject);
         setSensor();
+    }
+
+    @Override
+    public void answerEvent (ItemEvent itemEvent) {
+        System.out.println("On static entitiy answerevent");
     }
 
     @Override

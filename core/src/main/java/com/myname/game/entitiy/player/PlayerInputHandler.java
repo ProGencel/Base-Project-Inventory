@@ -2,6 +2,9 @@ package com.myname.game.entitiy.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.myname.game.entitiy.collision.CollisionManager;
+import com.myname.game.events.InputEvent;
+import com.myname.game.events.ItemEventManager;
 import com.myname.game.interfaces.UpdateAble;
 import com.myname.game.utils.Constants;
 
@@ -41,6 +44,11 @@ public class PlayerInputHandler implements UpdateAble {
         if(!player.velocity.isZero())
         {
             player.velocity.nor().scl(Constants.PLAYER_SPEED);
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E))
+        {
+            ItemEventManager.newInputEvent(new InputEvent("E"));
         }
     }
 }
